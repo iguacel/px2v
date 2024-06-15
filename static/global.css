@@ -24,8 +24,6 @@ html, body {
 	position: relative;
 	width: 100%;
 	scrollbar-gutter: stable both-edges;
-	height: 100vh;
-	overflow: hidden;
 }
 
 body[data-theme="light"] {
@@ -114,4 +112,8 @@ button {
 
 .op {
 	opacity: 0.5;
+}
+
+svg {
+	width: 100%;
 }
