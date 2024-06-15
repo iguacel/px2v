@@ -53,8 +53,10 @@
   .dropzone {
     border: 2px dashed #ccc;
     padding: 20px;
-    text-align: center;
     margin: 20px 0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

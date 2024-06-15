@@ -1,12 +1,10 @@
 <script>
-  import Nav from "$lib/components/Nav.svelte";
 </script>
 
 <header>
   <h1 class="pm">
     <slot />
   </h1>
-  <Nav />
 </header>
 
 <style>

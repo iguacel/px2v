@@ -67,7 +67,7 @@
     imageData,
     removeTransparent = true,
     useCompoundPaths = true,
-    hardcodeWidthHeight = true
+    hardcodeWidthHeight = false
   ) => {
     const { width, height, colors } = imageData;
     const squareSize = 1;

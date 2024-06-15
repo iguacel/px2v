@@ -8,6 +8,6 @@
 
 <style>
   .wrapper {
-    border: 1px solid gold;
+    margin-top: 4em;
   }
 </style>
