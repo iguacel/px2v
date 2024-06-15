@@ -1,8 +1,9 @@
 <script>
-  import Dropzone from "$lib/components/Dropzone.svelte";
-  import FileList from "$lib/components/FileList.svelte";
-  import Result from "$lib/components/Result.svelte";
+  import Dropzone from "svelte-file-dropzone";
   import UPNG from "upng-js";
+  import fileSaver from "file-saver";
+
+  const { saveAs } = fileSaver;
 
   let files = {
     accepted: [],
@@ -11,8 +12,8 @@
   let svgContent = "";
   let jsonContent = "";
 
-  function handleFilesSelect(event) {
-    const { acceptedFiles, fileRejections } = event.detail;
+  function handleFilesSelect(e) {
+    const { acceptedFiles, fileRejections } = e.detail;
     files.accepted = [...files.accepted, ...acceptedFiles];
     files.rejected = [...files.rejected, ...fileRejections];
 
@@ -48,6 +49,9 @@
           colors.push(color);
         }
       }
+
+      console.log("Decoded PNG data:", png);
+      console.log("Extracted colors:", colors.slice(0, 10)); // Debug log for colors
 
       const imageData = {
         name: file.name,
@@ -121,16 +125,61 @@
   const createJSON = (imageData) => {
     jsonContent = JSON.stringify(imageData, null, 2);
   };
+
+  const downloadSVG = () => {
+    const blob = new Blob([svgContent], {
+      type: "image/svg+xml;charset=utf-8",
+    });
+    saveAs(blob, "image.svg");
+  };
+
+  const downloadJSON = () => {
+    const blob = new Blob([jsonContent], {
+      type: "application/json;charset=utf-8",
+    });
+    saveAs(blob, "image.json");
+  };
 </script>
 
-<Dropzone on:drop={handleFilesSelect} />
+<Dropzone on:drop={handleFilesSelect} accept="image/png">
+  <div class="dropzone">Drop your image here</div>
+</Dropzone>
 
-<FileList {files} />
+{#if files.accepted.length > 0}
+  <div class="file-list">
+    <h3>Accepted Files:</h3>
+    <ul>
+      {#each files.accepted as file}
+        <li>{file.name}</li>
+      {/each}
+    </ul>
+  </div>
+{/if}
 
-<Result {svgContent} {jsonContent} />
+{#if svgContent || jsonContent}
+  <div class="result">
+    <h3>Download Options:</h3>
+    {#if svgContent}
+      <button on:click={downloadSVG}>Download SVG</button>
+    {/if}
+    {#if jsonContent}
+      <button on:click={downloadJSON}>Download JSON</button>
+    {/if}
+  </div>
+{/if}
 
 <style>
-  .app {
+  .dropzone {
+    border: 2px dashed #ccc;
     padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+  }
+  .file-list {
+    margin-top: 20px;
+  }
+  .result {
+    margin-top: 20px;
   }
 </style>
