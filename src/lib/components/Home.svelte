@@ -7,7 +7,4 @@
 </div>
 
 <style>
-  .wrapper {
-    margin-top: 4em;
-  }
 </style>

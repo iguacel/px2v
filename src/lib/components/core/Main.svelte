@@ -1,34 +1,28 @@
 <script>
   import Dropzone from "$lib/components/core/Dropzone.svelte";
-  import FileList from "$lib/components/core/FileList.svelte";
-  import Result from "$lib/components/core/Result.svelte";
+  import FileInfo from "$lib/components/core/FileInfo.svelte";
   import Preview from "$lib/components/core/Preview.svelte";
-
+  import Options from "$lib/components/core/Options.svelte";
+  import { writable } from "svelte/store";
   import UPNG from "upng-js";
 
-  let files = {
-    accepted: [],
-    rejected: [],
-  };
-  let svgContent = "";
-  let jsonContent = "";
+  let fileStore = writable(null);
+  let svgContent = writable("");
+  let jsonContent = writable("");
 
-  function handleFilesSelect(event) {
+  const handleFilesSelect = (event) => {
     const { acceptedFiles, fileRejections } = event.detail;
-    files.accepted = [...files.accepted, ...acceptedFiles];
-    files.rejected = [...files.rejected, ...fileRejections];
-
-    if (files.accepted.length > 0) {
-      processFile(files.accepted[0]);
+    if (acceptedFiles.length > 0) {
+      processFile(acceptedFiles[0]);
     }
-  }
+  };
 
   const processFile = (file) => {
     const reader = new FileReader();
     reader.onload = (event) => {
       const data = new Uint8Array(event.target.result);
-      const png = UPNG.decode(data); // Decode the PNG
-      const rgbaArrayBuffer = UPNG.toRGBA8(png)[0]; // Convert to RGBA format
+      const png = UPNG.decode(data);
+      const rgbaArrayBuffer = UPNG.toRGBA8(png)[0];
 
       if (!rgbaArrayBuffer) {
         console.error("Failed to convert PNG to RGBA format.");
@@ -57,7 +51,9 @@
         height: png.height,
         colors: colors,
       };
-      svgContent = createSVG(imageData, true, true); // Update svgContent
+
+      fileStore.set(imageData);
+      svgContent.set(createSVG(imageData, true, true));
       createJSON(imageData);
     };
     reader.readAsArrayBuffer(file);
@@ -71,8 +67,6 @@
   ) => {
     const { width, height, colors } = imageData;
     const squareSize = 1;
-
-    // Initialize the SVG with or without width and height attributes
     let svgContent = `<svg ${hardcodeWidthHeight ? `width="${width}" height="${height}" ` : ""}viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">\n`;
 
     if (useCompoundPaths) {
@@ -83,7 +77,7 @@
           const { r, g, b, a } = colors[idx];
 
           if (removeTransparent && a === 0) {
-            continue; // Skip transparent pixels
+            continue;
           }
 
           const color = `rgba(${r},${g},${b},${a / 255})`;
@@ -91,14 +85,12 @@
             paths[color] = [];
           }
 
-          // Add the rectangle as a path command
           paths[color].push(
             `M${x},${y} h${squareSize} v${squareSize} h-${squareSize} Z`
           );
         }
       }
 
-      // Combine paths of the same color into a single path element
       for (const [color, pathCommands] of Object.entries(paths)) {
         svgContent += `<path d="${pathCommands.join(" ")}" fill="${color}" />\n`;
       }
@@ -109,7 +101,7 @@
           const { r, g, b, a } = colors[idx];
 
           if (removeTransparent && a === 0) {
-            continue; // Skip transparent pixels
+            continue;
           }
 
           const color = `rgba(${r},${g},${b},${a / 255})`;
@@ -123,20 +115,29 @@
   };
 
   const createJSON = (imageData) => {
-    jsonContent = JSON.stringify(imageData, null, 2);
+    jsonContent.set(JSON.stringify(imageData, null, 2));
+  };
+
+  const resetApp = () => {
+    fileStore.set(null);
+    svgContent.set("");
+    jsonContent.set("");
   };
 </script>
 
-<Dropzone on:drop={handleFilesSelect} />
-
-<FileList {files} />
-
-{#if svgContent}
-  <!-- content here -->
+{#if $fileStore === null}
+  <Dropzone on:drop={handleFilesSelect} />
+{:else}
+  <FileInfo {fileStore} />
   <Preview {svgContent} />
+  <Options />
+  <div class="actions">
+    <button on:click={resetApp}>Convert another image</button>
+  </div>
 {/if}
 
-<Result {svgContent} {jsonContent} />
-
 <style>
+  .actions {
+    margin-top: 20px;
+  }
 </style>

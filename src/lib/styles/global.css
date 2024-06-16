@@ -25,17 +25,19 @@ html, body {
 	width: 100%;
 					background-position: 0px 0px, 10px 10px;
 						background-size: 20px 20px;
-						background-image: linear-gradient(45deg, var(--c-black) 25%, transparent 25%, transparent 75%, var(--c-black) 75%, var(--c-black) 100%), linear-gradient(45deg, var(--c-black) 25%, black 25%, black 75%, var(--c-black) 75%, var(--c-black) 100%);
+						background-image: linear-gradient(45deg, var(--c-bg) 25%, transparent 25%, transparent 75%, var(--c-bg) 75%, var(--c-bg) 100%), linear-gradient(45deg, var(--c-bg) 25%, var(--c-checker) 25%, var(--c-checker) 75%, var(--c-bg) 75%, var(--c-bg) 100%);
 }
 
 body[data-theme="light"] {
 	--c-fg: #0b0e14;
 	--c-bg: #fff;
+	--c-checker: rgba(20,20,20, 0.1);
 }
 
 body[data-theme="dark"] {
 	--c-fg: #fff;
 	--c-bg: #0b0e14;
+	--c-checker: rgba(255, 255, 255, 0.01);
 }
 
 body {

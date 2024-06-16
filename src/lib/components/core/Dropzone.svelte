@@ -35,7 +35,7 @@
 <div
   class="dropzone"
   on:drop={handleDrop}
-  on:dragover|preventDefault
+  on:dragover={(event) => event.preventDefault()}
   on:click={handleClick}
 >
   Drop your image here or click to upload
@@ -51,12 +51,12 @@
 
 <style>
   .dropzone {
-    border: 2px dashed #ccc;
     padding: 20px;
-    margin: 20px 0;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 60px);
+    border: 1px solid var(--c-fg);
   }
 </style>

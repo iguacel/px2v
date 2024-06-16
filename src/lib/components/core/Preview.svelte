@@ -1,14 +1,16 @@
 <script>
-  export let svgContent = "";
+  import { get } from "svelte/store";
+  export let svgContent;
+
+  $: content = get(svgContent);
 </script>
 
-<!-- markup (zero or more items) goes here -->
-<div class="svgWrapper">
-  {@html svgContent}
+<div class="svg-wrapper">
+  {@html content}
 </div>
 
 <style>
-  .svgWrapper {
+  .svg-wrapper {
     border: 1px solid crimson;
   }
 </style>

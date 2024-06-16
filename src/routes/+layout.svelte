@@ -1,4 +1,6 @@
 <script>
+  import "$lib/styles/global.css";
+
   import { onMount } from "svelte";
   import ToggleTheme from "$lib/components/ToggleTheme.svelte";
   import { isDev } from "$lib/stores/dev";
@@ -32,7 +34,6 @@
 <style>
   .app {
     width: 100%;
-    max-width: var(--max-width);
     overflow: hidden;
     padding: var(--padding);
     margin: 0 auto;
