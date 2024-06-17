@@ -1,9 +1,8 @@
 <script>
   import fileSaver from "file-saver";
-  const { saveAs } = fileSaver;
+  import { svgContent, jsonContent } from "$lib/components/core/store.js";
 
-  export let svgContent = "";
-  export let jsonContent = "";
+  const { saveAs } = fileSaver;
 
   const downloadSVG = () => {
     const blob = new Blob([svgContent], {
@@ -20,13 +19,13 @@
   };
 </script>
 
-{#if svgContent || jsonContent}
+{#if $svgContent || $jsonContent}
   <div class="result">
     <h3>Download Options:</h3>
-    {#if svgContent}
+    {#if $svgContent}
       <button on:click={downloadSVG}>Download SVG</button>
     {/if}
-    {#if jsonContent}
+    {#if $jsonContent}
       <button on:click={downloadJSON}>Download JSON</button>
     {/if}
   </div>

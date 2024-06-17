@@ -13,5 +13,6 @@
 <style>
   .file-info {
     padding: 1em 1em 0 1em;
+    line-height: 1.4em;
   }
 </style>

@@ -38,7 +38,7 @@
   on:dragover={(event) => event.preventDefault()}
   on:click={handleClick}
 >
-  Drop your image here <br/>or click to upload
+  Drop your image here <br />or click to upload
 </div>
 <input
   type="file"

@@ -1,6 +1,6 @@
 <script>
   import { get } from "svelte/store";
-  export let svgContent;
+  import { svgContent } from "$lib/components/core/store.js";
 
   $: content = get(svgContent);
 </script>

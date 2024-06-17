@@ -1,19 +1,11 @@
 <script>
-  import { writable } from "svelte/store";
-  import { theme } from "$lib/stores/theme";
-
-  $: isDark = $theme === "dark" ? "is-dark" : "";
-
-  export let svgContent;
-  export let jsonContent;
-
+  import {
+    options,
+    svgContent,
+    jsonContent,
+  } from "$lib/components/core/store.js";
   import fileSaver from "file-saver";
   const { saveAs } = fileSaver;
-
-  let compoundPath = writable(true);
-  let removeAlpha = writable(true);
-  let preferViewBox = writable(true);
-  let minifyJSON = writable(false);
 
   const downloadSVG = () => {
     const blob = new Blob([$svgContent], {
@@ -23,9 +15,9 @@
   };
 
   const downloadJSON = () => {
-    const json = minifyJSON
+    const json = $options.minifyJSON
       ? JSON.stringify(JSON.parse($jsonContent))
-      : jsonContent;
+      : $jsonContent;
     const blob = new Blob([json], {
       type: "application/json;charset=utf-8",
     });
@@ -40,8 +32,8 @@
       <label class="checkbox-label">
         <input
           type="checkbox"
-          class="checkbox {isDark}"
-          bind:checked={$compoundPath}
+          class="checkbox"
+          bind:checked={$options.compoundPath}
         />
         <span>Compound path</span>
       </label>
@@ -49,17 +41,26 @@
       <label class="checkbox-label">
         <input
           type="checkbox"
-          class="checkbox {isDark}"
-          bind:checked={$removeAlpha}
+          class="checkbox"
+          bind:checked={$options.removeAlpha}
         />
-        <span>Remove Alpha</span>
+        <span>Remove alpha</span>
       </label>
 
       <label class="checkbox-label">
         <input
           type="checkbox"
-          class="checkbox {isDark}"
-          bind:checked={$preferViewBox}
+          class="checkbox"
+          bind:checked={$options.preferHex}
+        />
+        <span>Prefer hex</span>
+      </label>
+
+      <label class="checkbox-label">
+        <input
+          type="checkbox"
+          class="checkbox"
+          bind:checked={$options.preferViewBox}
         />
         <span>Prefer ViewBox</span>
       </label>
@@ -73,8 +74,8 @@
       <label class="checkbox-label">
         <input
           type="checkbox"
-          class="checkbox {isDark}"
-          bind:checked={$minifyJSON}
+          class="checkbox"
+          bind:checked={$options.minifyJSON}
         />
         <span>Minify</span>
       </label>
@@ -104,6 +105,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   }
 
   .checkbox-label > span {
@@ -120,6 +122,7 @@
     height: 0.8em;
     border: 0.15em solid currentColor;
     transform: translateY(-0.075em);
+    cursor: pointer;
   }
 
   .form-control {
