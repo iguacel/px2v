@@ -11,6 +11,10 @@
 
 <style>
   .svg-wrapper {
-    border: 1px solid crimson;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

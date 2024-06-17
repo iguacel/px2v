@@ -38,7 +38,7 @@
   on:dragover={(event) => event.preventDefault()}
   on:click={handleClick}
 >
-  Drop your image here or click to upload
+  Drop your image here <br/>or click to upload
 </div>
 <input
   type="file"
@@ -52,11 +52,12 @@
 <style>
   .dropzone {
     padding: 20px;
+    height: 100vh;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px);
-    border: 1px solid var(--c-fg);
+    font-size: 1em;
+    text-align: center;
   }
 </style>

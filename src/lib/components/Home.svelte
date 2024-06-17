@@ -2,9 +2,7 @@
   import Main from "$lib/components/core/Main.svelte";
 </script>
 
-<div class="wrapper">
-  <Main />
-</div>
+<Main />
 
 <style>
 </style>

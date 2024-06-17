@@ -1,8 +1,7 @@
 <script>
   import Dropzone from "$lib/components/core/Dropzone.svelte";
-  import FileInfo from "$lib/components/core/FileInfo.svelte";
+  import Menu from "$lib/components/core/Menu.svelte";
   import Preview from "$lib/components/core/Preview.svelte";
-  import Options from "$lib/components/core/Options.svelte";
   import { writable } from "svelte/store";
   import UPNG from "upng-js";
 
@@ -63,7 +62,7 @@
     imageData,
     removeTransparent = true,
     useCompoundPaths = true,
-    hardcodeWidthHeight = false
+    hardcodeWidthHeight = false,
   ) => {
     const { width, height, colors } = imageData;
     const squareSize = 1;
@@ -86,7 +85,7 @@
           }
 
           paths[color].push(
-            `M${x},${y} h${squareSize} v${squareSize} h-${squareSize} Z`
+            `M${x},${y} h${squareSize} v${squareSize} h-${squareSize} Z`,
           );
         }
       }
@@ -128,16 +127,6 @@
 {#if $fileStore === null}
   <Dropzone on:drop={handleFilesSelect} />
 {:else}
-  <FileInfo {fileStore} />
   <Preview {svgContent} />
-  <Options />
-  <div class="actions">
-    <button on:click={resetApp}>Convert another image</button>
-  </div>
+  <Menu {fileStore} {resetApp} {svgContent} {jsonContent} />
 {/if}
-
-<style>
-  .actions {
-    margin-top: 20px;
-  }
-</style>

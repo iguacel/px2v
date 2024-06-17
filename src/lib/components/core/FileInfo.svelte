@@ -7,13 +7,14 @@
 
 <div class="file-info">
   <p>{file.name}</p>
-  <small>{file.width}x{file.height} pixels</small>
-  <small>{file.width * file.height} pixels total</small>
+  <small>{file.width} x {file.height} = {file.width * file.height} px</small>
 </div>
 
 <style>
   .file-info {
-    margin-top: 20px;
+    text-align: center;
+    padding: 1em;
+    text-align: left;
   }
 
   .file-info small {

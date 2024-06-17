@@ -10,13 +10,14 @@
 <style>
   header {
     position: absolute;
-    top: calc(var(--margin) * 0.35);
+    top: calc(var(--margin) * 0.5);
     left: calc(var(--margin) * 0.52);
+    z-index: 1;
   }
 
   h1 {
     font-family: var(--display);
-    font-size: 7rem;
+    font-size: 4rem;
     padding: 0;
     line-height: 0.5;
   }
