@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import FileInfo from "$lib/components/core/FileInfo.svelte";
     import Options from "$lib/components/core/Options.svelte";
-import Reset from "$lib/components/core/Reset.svelte";
+    import Reset from "$lib/components/core/Reset.svelte";
 
     export let fileStore;
     export let resetApp;
@@ -17,24 +17,20 @@ import Reset from "$lib/components/core/Reset.svelte";
 
     onMount(() => {
         updateViewport();
-        window.addEventListener('resize', updateViewport);
+        window.addEventListener("resize", updateViewport);
         return () => {
-            window.removeEventListener('resize', updateViewport);
+            window.removeEventListener("resize", updateViewport);
         };
     });
 </script>
 
 <div class="menu {isPortrait ? 'portrait' : 'landscape'}">
     <div class="content">
-        <FileInfo {fileStore} {resetApp}/>
+        <FileInfo {fileStore} />
         <Options {svgContent} {jsonContent} />
         <Reset {resetApp} />
     </div>
-
-
 </div>
-
-
 
 <style>
     .menu {
@@ -42,7 +38,7 @@ import Reset from "$lib/components/core/Reset.svelte";
         height: 100vh;
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -53,8 +49,9 @@ import Reset from "$lib/components/core/Reset.svelte";
     .content {
         width: 100%;
         background: var(--c-bg);
-       background: var(--c-fg);
+        background: var(--c-fg);
         color: var(--c-bg);
+        transition: all 400ms;
     }
 
     .menu.portrait .content {
@@ -63,5 +60,6 @@ import Reset from "$lib/components/core/Reset.svelte";
 
     .menu.landscape .content {
         width: 320px;
+        margin-left: auto;
     }
 </style>

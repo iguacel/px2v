@@ -7,7 +7,7 @@
 
 <div class="file-info">
   <h3>{file.name}</h3>
-  <p>{file.width}x{file.height} -> {file.width * file.height} px</p>
+  <p>{file.width} x {file.height} - {file.width * file.height}px</p>
 </div>
 
 <style>
