@@ -1,0 +1,1 @@
+import{d as r,w as a}from"./index.CdXyaQIg.js";const s={LIGHT:"light",DARK:"dark"};function o(){{const e=localStorage.getItem("theme");return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}}const t=a("light");t.set(o()),t.subscribe(e=>{localStorage.setItem("theme",e),document.body.setAttribute("data-theme",e)});r(t,e=>e===s.DARK);export{s as T,t};
