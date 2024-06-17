@@ -20,6 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"chroma-js": "^2.4.2",
 		"file-saver": "^2.0.5",
 		"png-ts": "^0.0.3",
 		"pngjs": "^7.0.0",

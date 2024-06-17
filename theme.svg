@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000001;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #ff8170;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="cls-3" points="7 5 6 5 5 5 5 6 5 7 5 8 6 8 6 7 6 6 7 6 7 5"/>
+    <polygon class="cls-3" points="10 6 11 6 11 5 9 5 9 8 10 8 10 6"/>
+    <rect class="cls-3" x="7" y="10" width="1" height="1"/>
+    <rect class="cls-3" x="9" y="10" width="1" height="1"/>
+  </g>
+  <path class="cls-2" d="M15,6h-1v-2h-1v-1h-1v-1h-2v-1h-4v1h-2v1h-1v1h-1v2h-1v4h1v2h1v1h1v1h2v1h4v-1h2v-1h1v-1h1v-2h1v-4ZM5,12v-1h-1v-1h8v1h-1v1h-6ZM11,8h-2v-3h2v3ZM5,8v-3h2v3h-2Z"/>
+  <g>
+    <path class="cls-1" d="M1,13h1v1h1v1h2v1h6v-1h2v-1h1v-1h1v-2h1v-6h-1v-2h-1v-1h-1v-1h-2V0h-6v1h-2v1h-1v1h-1v2H0v6h1v2ZM1,6h1v-2h1v-1h1v-1h2v-1h4v1h2v1h1v1h1v2h1v4h-1v2h-1v1h-1v1h-2v1h-4v-1h-2v-1h-1v-1h-1v-2h-1v-4Z"/>
+    <rect class="cls-1" x="6" y="6" width="1" height="2"/>
+    <rect class="cls-1" x="10" y="6" width="1" height="2"/>
+    <polygon class="cls-1" points="11 12 11 11 12 11 12 10 10 10 10 11 9 11 9 10 8 10 8 11 7 11 7 10 4 10 4 11 5 11 5 12 11 12"/>
+  </g>
+</svg>
