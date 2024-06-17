@@ -30,7 +30,11 @@ import Reset from "$lib/components/core/Reset.svelte";
         <Options {svgContent} {jsonContent} />
         <Reset {resetApp} />
     </div>
+
+
 </div>
+
+
 
 <style>
     .menu {
@@ -47,18 +51,17 @@ import Reset from "$lib/components/core/Reset.svelte";
     }
 
     .content {
-        width: 50%;
-        background: var(--c-fg);
+        width: 100%;
+        background: var(--c-bg);
+       background: var(--c-fg);
         color: var(--c-bg);
     }
 
     .menu.portrait .content {
-        /* Styles for portrait mode */
         width: 100%;
     }
 
     .menu.landscape .content {
-        /* Styles for landscape mode */
-        width: 50%;
+        width: 320px;
     }
 </style>

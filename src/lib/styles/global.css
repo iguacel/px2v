@@ -4,7 +4,7 @@
 :root {
     --c-main: #3fb950;
     --c-black: #191919;
-    --sans: "Tiny5", sans-serif;
+    --sans: "Tiny5", system-ui;
 	--display: "Micro 5", sans-serif;
     --max-width: 1280px;
     --padding: 32px;
@@ -14,6 +14,7 @@
 *, *::before, *::after {
 	box-sizing: border-box;
 	-webkit-tap-highlight-color: transparent;
+	image-rendering: pixelated
 }
 
 * {
@@ -93,10 +94,10 @@ ul {
 	margin: 0;
 }
 
-input {
+/* input {
 	all: unset;
 	box-sizing: border-box;
-}
+} */
 
 button {
     all: unset;
